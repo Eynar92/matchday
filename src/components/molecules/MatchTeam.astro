@@ -1,0 +1,18 @@
+---
+import TeamLogo from "@/components/atoms/TeamLogo.astro";
+
+export interface Props {
+  src: string
+  name: string
+  alt?: string
+  size?: number
+  class?: string
+}
+
+const { src, name, alt = `Logo of ${name}`, size = 64, class: className = "" } = Astro.props
+---
+
+<div class={`flex flex-col items-center gap-2 ${className}`}>
+  <TeamLogo {src} {alt} {size} />
+  <span class="text-sm font-bold text-center text-foreground">{name}</span>
+</div>
