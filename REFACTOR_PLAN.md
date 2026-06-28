@@ -21,7 +21,7 @@
 
 Los componentes más pequeños e indivisibles.
 
-- [ ] **2.1** `src/components/atoms/Icon.astro`
+- [x] **2.1** `src/components/atoms/Icon.astro`
   - Mapa de nombres Lucide → paths SVG
   - Props: `name`, `size`, `class`
   - Iconos necesarios: `Menu`, `Search`, `CircleUser`, `Soccer`, `Square`, `Flag`, `CornerDownRight`, `Bell`, `Radio`, `Calendar`, `Trophy`, `User`
