@@ -8,7 +8,7 @@
 
 ## Fase 1: Configuración Base
 
-- [ ] **1.1** Modificar `src/layouts/Layout.astro`
+- [x] **1.1** Modificar `src/layouts/Layout.astro`
   - Añadir `class="dark"` al `<html>`
   - Añadir `viewport-fit=cover` al meta viewport
   - Añadir `selection:bg-secondary/30` al body
