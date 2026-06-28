@@ -39,7 +39,7 @@ Los componentes más pequeños e indivisibles.
   - Barra de progreso dual con labels
   - Props: `homeLabel`, `awayLabel`, `homePercent`, `awayPercent`
 
-- [ ] **2.5** `src/components/atoms/StatItem.astro`
+- [x] **2.5** `src/components/atoms/StatItem.astro`
   - Icono + valor numérico (para grilla de estadísticas)
   - Props: `icon`, `value`, `iconColor`
 
