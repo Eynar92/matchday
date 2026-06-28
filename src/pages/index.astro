@@ -1,45 +1,114 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import MatchdayLayout from '@/layouts/MatchdayLayout.astro';
-import LiveMatchHero from '@/components/organisms/LiveMatchHero.astro';
-import NextMatchesCarousel from '@/components/organisms/NextMatchesCarousel.astro';
+import Layout from "@/layouts/Layout.astro";
+import MatchdayLayout from "@/layouts/MatchdayLayout.astro";
+import LiveMatchHero from "@/components/organisms/LiveMatchHero.astro";
+import NextMatchesCarousel from "@/components/organisms/NextMatchesCarousel.astro";
+import RecentResultCard from "@/components/organisms/RecentResultCard.astro";
 ---
 
 <Layout>
   <MatchdayLayout>
     <LiveMatchHero
-      homeTeam={{ src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDnl7ZIi0ZyPqt0WC2fVtYrWMxjpiFVPt7zAat0j0CKVxd-6hYMLCkjz1_XSWWxnNsgb3CpYfxPCtTaTESXbW4eC-4FaF8tWX7twuSJuE2TApjPML6oOsBs_sLBs-9SrMoYGhZSGId5i1LVY4sZKdnIYcsaLUWB0MNYm66faExmgN5TZeJqda4KVshzP15yxmF4edw2gJcPdMPN7NjGbrTJ87PEdTs9OG_WnsQ4IaDHYEdkZBZqCV0wtmMUODfKl21go915cqcaSw', name: 'Man City' }}
-      awayTeam={{ src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8iR7zvpHoUNoYoB2Pnb9tKZWYGy6_YP24vy6a3J506aL4Rs55wmYpbOktzGpGy-MSJ6SJYG4tdr8Z30pWXvR-FTrthxlSvjo7rqX2GhrPf1j7HRskhIvDFtIpp-QLArIecU42qbJ4nAWeIGQ35W8VxlyrCjzPjtAA3Br01VzIQez2O3cmsVP1pKSwDXxRnkYxQV3ghPdQ-xPSkeGkN3iuZUqf0c3JSRYyM_bTOZ7p7ipYRULC9knBULAx-gDgN6D_nv0Ad81isA', name: 'Arsenal' }}
+      homeTeam={{
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnl7ZIi0ZyPqt0WC2fVtYrWMxjpiFVPt7zAat0j0CKVxd-6hYMLCkjz1_XSWWxnNsgb3CpYfxPCtTaTESXbW4eC-4FaF8tWX7twuSJuE2TApjPML6oOsBs_sLBs-9SrMoYGhZSGId5i1LVY4sZKdnIYcsaLUWB0MNYm66faExmgN5TZeJqda4KVshzP15yxmF4edw2gJcPdMPN7NjGbrTJ87PEdTs9OG_WnsQ4IaDHYEdkZBZqCV0wtmMUODfKl21go915cqcaSw",
+        name: "Man City",
+      }}
+      awayTeam={{
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8iR7zvpHoUNoYoB2Pnb9tKZWYGy6_YP24vy6a3J506aL4Rs55wmYpbOktzGpGy-MSJ6SJYG4tdr8Z30pWXvR-FTrthxlSvjo7rqX2GhrPf1j7HRskhIvDFtIpp-QLArIecU42qbJ4nAWeIGQ35W8VxlyrCjzPjtAA3Br01VzIQez2O3cmsVP1pKSwDXxRnkYxQV3ghPdQ-xPSkeGkN3iuZUqf0c3JSRYyM_bTOZ7p7ipYRULC9knBULAx-gDgN6D_nv0Ad81isA",
+        name: "Arsenal",
+      }}
       homeScore={0}
       awayScore={1}
     />
     <NextMatchesCarousel
       matches={[
         {
-          date: 'Mon 29/06 19:00',
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDg6DpUmFrtKDdeI_xo1G7_FHATmkw73Y1PwEofxYf-2ekh9lCMd7s033jdtcj2Dkvgh0Q6t5gscoA-MDqZvk2-JKFybXClu14EeWa6jGULM_-vhb1gEttyo1LC8mmbgmYzRaQHchgZVJin2lAmKLb-PmOfbBjhbGJ_Me_dYG9axZEP_iIRjtB30UQDikAolcj3Xnpw9rNydHYkjDE1XwdtOaz1MOOo51MXh3zYcE14XXc8cqwefWAvD5CmtLw2wl6aHoGeqEK8ag', name: 'Real Madrid' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4o-J53F4PGt4BeVKpYGQs1PkVTIxeK8JwEreMFTfeAxZ1HLU3gpmECtC3dl5S7NJAQnEhlvpY_hOB0jT8cOq4ThUt15R_bv0auQJOAKbkwe6RPEgAAkqXQBmCo5CH7n1JW_egvxFcrYbGOWKPIaq7ctW91izO92nmb6yNMgpCUWvTX0W3WDsNAkl41MeQeyiLmcXrS5BOcD9bl77TZM4s1aeK-ztD5cbYBn09ytkhfS9yHu4tyETvW_CBnS56ARC2X4FnafGUeA', name: 'Barcelona' },
+          date: "Mon 29/06 19:00",
+          homeTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDg6DpUmFrtKDdeI_xo1G7_FHATmkw73Y1PwEofxYf-2ekh9lCMd7s033jdtcj2Dkvgh0Q6t5gscoA-MDqZvk2-JKFybXClu14EeWa6jGULM_-vhb1gEttyo1LC8mmbgmYzRaQHchgZVJin2lAmKLb-PmOfbBjhbGJ_Me_dYG9axZEP_iIRjtB30UQDikAolcj3Xnpw9rNydHYkjDE1XwdtOaz1MOOo51MXh3zYcE14XXc8cqwefWAvD5CmtLw2wl6aHoGeqEK8ag",
+            name: "Real Madrid",
+          },
+          awayTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuD4o-J53F4PGt4BeVKpYGQs1PkVTIxeK8JwEreMFTfeAxZ1HLU3gpmECtC3dl5S7NJAQnEhlvpY_hOB0jT8cOq4ThUt15R_bv0auQJOAKbkwe6RPEgAAkqXQBmCo5CH7n1JW_egvxFcrYbGOWKPIaq7ctW91izO92nmb6yNMgpCUWvTX0W3WDsNAkl41MeQeyiLmcXrS5BOcD9bl77TZM4s1aeK-ztD5cbYBn09ytkhfS9yHu4tyETvW_CBnS56ARC2X4FnafGUeA",
+            name: "Barcelona",
+          },
         },
         {
-          date: 'Tue 30/06 21:00',
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A', name: 'Liverpool' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA', name: 'Bayern' },
+          date: "Tue 30/06 21:00",
+          homeTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A",
+            name: "Liverpool",
+          },
+          awayTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA",
+            name: "Bayern",
+          },
         },
         {
-          date: 'Tue 30/06 21:00',
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A', name: 'Liverpool' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA', name: 'Bayern' },
+          date: "Tue 30/06 21:00",
+          homeTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A",
+            name: "Liverpool",
+          },
+          awayTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA",
+            name: "Bayern",
+          },
         },
         {
-          date: 'Tue 30/06 21:00',
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A', name: 'Liverpool' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA', name: 'Bayern' },
+          date: "Tue 30/06 21:00",
+          homeTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A",
+            name: "Liverpool",
+          },
+          awayTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA",
+            name: "Bayern",
+          },
         },
         {
-          date: 'Tue 30/06 21:00',
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A', name: 'Liverpool' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA', name: 'Bayern' },
+          date: "Tue 30/06 21:00",
+          homeTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A",
+            name: "Liverpool",
+          },
+          awayTeam: {
+            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA",
+            name: "Bayern",
+          },
         },
+      ]}
+    />
+    <RecentResultCard
+      homeTeam={{
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuD3fy63nvtqw3DotSyVQ9_WiXufZWryJXjDY9HOj0auOyGlKmPFwV9-0PEseUxK45rttpMabNyMj3R_cDsnnssrqxhYQ2vNEAlSIyMIryBWgjx8MguALXuSXwYW5R9x0SUT_QUkxcsJAPgAByXMJbd7nqDjdoPRlRuqmqYdIvF4I3DoNuTFW-BgE2FRCIiegtBCPjgnhObeh_1p_jE2h1IL90CQ4KQyI2iHWeQY-pjILeJ-3674ANxT7nbKzg_M6-te2upwZrFTdA",
+        name: "Chelsea",
+      }}
+      awayTeam={{
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfHl8JKX1ptauwor4C-avJhf5OGZ9FzxgrLk9OEaUI0eam2s6p1jvuwH6_bC2d561r78nxyXe2x4T99ar8trJ_dNh55nOp1s0SYdgVYfOBYgR7dQSt9bdHB0YqNhy30Y6qTBA_DIZPWGK89M8Ed29Dm0wyMMPUEOCw8p_E3DD0PMxLvSwJ0g0-e7voBMkht-Jmny6ypqWlzuYvESYFNphyaY5gd0dg_z67As5lGCpaXxnlztKVbdwNayh6AWEMrHXcWSrJ-ECFqA",
+        name: "Spurs",
+      }}
+      homeScore={3}
+      awayScore={1}
+      performances={[
+        {
+          label: "Possession",
+          homeValue: "62%",
+          awayValue: "38%",
+          homePercent: 62,
+        },
+        {
+          label: "Shots (OT)",
+          homeValue: "14(8)",
+          awayValue: "9(2)",
+          homePercent: 55,
+        },
+      ]}
+      stats={[
+        { icon: "Square", value1: 2, value2: 4, iconClass: "text-yellow-500" },
+        { icon: "Square", value1: 0, value2: 0, iconClass: "text-destructive" },
+        { icon: "Flag", value1: 3, value2: 1 },
+        { icon: "CornerDownRight", value1: 7, value2: 4 },
       ]}
     />
   </MatchdayLayout>

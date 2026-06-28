@@ -87,13 +87,13 @@ Componentes complejos que forman secciones completas de la UI.
   - Card de próximo partido: fecha, recordatorio (Bell), equipos, botón "Match Details"
   - Botón usa shadcn `Button` con `client:load`
 
-- [ ] **4.4** `src/components/organisms/NextMatchesCarousel.astro`
+- [x] **4.4** `src/components/organisms/NextMatchesCarousel.astro`
   - Título "Next Matches" + "View All" + scroll horizontal
   - Contiene 2+ `NextMatchCard`
   - Scroll drag con script vanilla (mouse drag)
   - `hide-scrollbar` con clases Tailwind
 
-- [ ] **4.5** `src/components/organisms/RecentResultCard.astro`
+- [x] **4.5** `src/components/organisms/RecentResultCard.astro`
   - Card completa: `TeamScoreRow` + `PerformanceBar` x2 + grilla `StatItem` x4
   - `active:scale-[0.98]` para micro-interacción touch
 

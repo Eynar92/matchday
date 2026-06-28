@@ -1,16 +1,8 @@
 ---
+import type { IconName, Team } from "@/lib/types";
 import MatchTeam from "@/components/molecules/MatchTeam.astro";
 import ScoreDisplay from "@/components/atoms/ScoreDisplay.astro";
 import MatchEvent from "@/components/atoms/MatchEvent.astro";
-import type { ComponentProps } from "react";
-import type LucideIcon from "@/components/atoms/LucideIcon";
-
-type IconName = ComponentProps<typeof LucideIcon>["name"];
-
-type Team = {
-  src: string;
-  name: string;
-};
 
 type Event = {
   icon: IconName;

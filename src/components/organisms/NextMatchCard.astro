@@ -1,12 +1,7 @@
 ---
 import { Button } from "@/components/ui/button";
 import TeamLogo from "@/components/atoms/TeamLogo.astro";
-import LucideIcon from "@/components/atoms/LucideIcon";
-
-type Team = {
-  src: string;
-  name: string;
-};
+import type { Team } from "@/lib/types";
 
 export interface Props {
   date: string;

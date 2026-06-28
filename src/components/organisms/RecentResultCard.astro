@@ -1,0 +1,55 @@
+---
+import type { Team, Stat, PerformanceBarData } from "@/lib/types";
+import TeamScoreRow from "@/components/molecules/TeamScoreRow.astro";
+import PerformanceBar from "@/components/atoms/PerformanceBar.astro";
+import StatItem from "@/components/atoms/StatItem.astro";
+
+export interface Props {
+  homeTeam: Team;
+  awayTeam: Team;
+  homeScore: number;
+  awayScore: number;
+  performances: PerformanceBarData[];
+  stats: Stat[];
+  class?: string;
+}
+
+const {
+  homeTeam,
+  awayTeam,
+  homeScore,
+  awayScore,
+  performances,
+  stats,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`bg-card rounded-xl p-6 border space-y-6 active:scale-[0.98] transition-transform duration-150 ${className}`}>
+  <TeamScoreRow
+    homeSrc={homeTeam.src}
+    homeName={homeTeam.name}
+    awaySrc={awayTeam.src}
+    awayName={awayTeam.name}
+    homeScore={homeScore}
+    awayScore={awayScore}
+    scoreSize="sm"
+  />
+  <div class="space-y-4">
+    {performances.map((p) => (
+      <PerformanceBar
+        label={p.label}
+        homeValue={p.homeValue}
+        awayValue={p.awayValue}
+        homePercent={p.homePercent}
+        homeColor={p.homeColor}
+        awayColor={p.awayColor}
+      />
+    ))}
+  </div>
+  <div class="grid grid-cols-4 gap-2 pt-4 border-t border-border">
+    {stats.map((s) => (
+      <StatItem icon={s.icon} value1={s.value1} value2={s.value2} iconClass={s.iconClass} />
+    ))}
+  </div>
+</div>
