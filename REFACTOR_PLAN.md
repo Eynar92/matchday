@@ -21,33 +21,33 @@
 
 Los componentes más pequeños e indivisibles.
 
-- [ ] **2.1** `src/components/atoms/Icon.astro`
+- [x] **2.1** `src/components/atoms/Icon.astro`
   - Mapa de nombres Lucide → paths SVG
   - Props: `name`, `size`, `class`
   - Iconos necesarios: `Menu`, `Search`, `CircleUser`, `Soccer`, `Square`, `Flag`, `CornerDownRight`, `Bell`, `Radio`, `Calendar`, `Trophy`, `User`
 
-- [ ] **2.2** `src/components/atoms/TeamLogo.astro`
+- [x] **2.2** `src/components/atoms/TeamLogo.astro`
   - `<img>` con dimensiones y `object-contain`
   - Props: `src`, `alt`, `size` (default 48px)
 
-- [ ] **2.3** `src/components/atoms/LiveIndicator.astro`
+- [x] **2.3** `src/components/atoms/LiveIndicator.astro`
   - Punto rojo pulsante + texto "Live • 48:38"
   - Usa `animate-pulse` de Tailwind (reemplaza keyframe custom)
   - Props: `time` (string, e.g. "48:38")
 
-- [ ] **2.4** `src/components/atoms/PerformanceBar.astro`
+- [x] **2.4** `src/components/atoms/PerformanceBar.astro`
   - Barra de progreso dual con labels
   - Props: `homeLabel`, `awayLabel`, `homePercent`, `awayPercent`
 
-- [ ] **2.5** `src/components/atoms/StatItem.astro`
+- [x] **2.5** `src/components/atoms/StatItem.astro`
   - Icono + valor numérico (para grilla de estadísticas)
   - Props: `icon`, `value`, `iconColor`
 
-- [ ] **2.6** `src/components/atoms/ScoreDisplay.astro`
+- [x] **2.6** `src/components/atoms/ScoreDisplay.astro`
   - Marcador tipográfico "0 : 1"
   - Props: `homeScore`, `awayScore`, `awayHighlight` (boolean)
 
-- [ ] **2.7** `src/components/atoms/MatchEvent.astro`
+- [x] **2.7** `src/components/atoms/MatchEvent.astro`
   - Icono + texto tipo "22' Saka"
   - Props: `icon`, `text`, `iconColor`
 

@@ -8,13 +8,15 @@
     "dist"
   ],
   "compilerOptions": {
-    "rootDir": ".",
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    "types": ["react", "react-dom"]
   }
 }
