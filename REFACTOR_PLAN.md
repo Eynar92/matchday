@@ -97,7 +97,7 @@ Componentes complejos que forman secciones completas de la UI.
   - Card completa: `TeamScoreRow` + `PerformanceBar` x2 + grilla `StatItem` x4
   - `active:scale-[0.98]` para micro-interacción touch
 
-- [ ] **4.6** `src/components/organisms/RecentResultsList.astro`
+- [x] **4.6** `src/components/organisms/RecentResultsList.astro`
   - Título "Recent Results" + lista vertical de `RecentResultCard`
 
 - [ ] **4.7** `src/components/organisms/BottomNavBar.astro`
