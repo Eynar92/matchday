@@ -30,12 +30,12 @@ Los componentes más pequeños e indivisibles.
   - `<img>` con dimensiones y `object-contain`
   - Props: `src`, `alt`, `size` (default 48px)
 
-- [ ] **2.3** `src/components/atoms/LiveIndicator.astro`
+- [x] **2.3** `src/components/atoms/LiveIndicator.astro`
   - Punto rojo pulsante + texto "Live • 48:38"
   - Usa `animate-pulse` de Tailwind (reemplaza keyframe custom)
   - Props: `time` (string, e.g. "48:38")
 
-- [ ] **2.4** `src/components/atoms/PerformanceBar.astro`
+- [x] **2.4** `src/components/atoms/PerformanceBar.astro`
   - Barra de progreso dual con labels
   - Props: `homeLabel`, `awayLabel`, `homePercent`, `awayPercent`
 

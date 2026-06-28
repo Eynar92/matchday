@@ -1,0 +1,42 @@
+---
+type BarColor =
+  | 'bg-green-500' | 'bg-emerald-500'
+  | 'bg-blue-500' | 'bg-sky-500'
+  | 'bg-red-500' | 'bg-rose-500'
+  | 'bg-yellow-500' | 'bg-amber-500'
+  | 'bg-purple-500' | 'bg-violet-500'
+  | 'bg-orange-500' | 'bg-cyan-500'
+  | 'bg-pink-500' | 'bg-teal-500'
+
+export interface Props {
+  label: string
+  homeValue: string
+  awayValue: string
+  homePercent: number
+  homeColor?: BarColor
+  awayColor?: BarColor
+  class?: string
+}
+
+const {
+  label,
+  homeValue,
+  awayValue,
+  homePercent,
+  homeColor = 'bg-green-500',
+  awayColor = 'bg-blue-500',
+  class: className = ''
+} = Astro.props
+---
+
+<div class={`space-y-1 ${className}`}>
+  <div class="flex justify-between text-[10px] font-bold uppercase text-muted-foreground tracking-widest px-1">
+    <span>{label}</span>
+    <span>{homeValue} - {awayValue}</span>
+  </div>
+  <div class="flex h-1.5 w-full bg-card rounded-full overflow-hidden">
+    <div class={`h-full ${homeColor}`} style={`width: ${homePercent}%`}></div>
+    <div class="bg-transparent h-full w-0.5"></div>
+    <div class={`h-full flex-1 ${awayColor}`}></div>
+  </div>
+</div>
