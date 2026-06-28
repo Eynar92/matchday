@@ -100,7 +100,7 @@ Componentes complejos que forman secciones completas de la UI.
 - [x] **4.6** `src/components/organisms/RecentResultsList.astro`
   - Título "Recent Results" + lista vertical de `RecentResultCard`
 
-- [ ] **4.7** `src/components/organisms/BottomNavBar.astro`
+- [x] **4.7** `src/components/organisms/BottomNavBar.astro`
   - Barra fija inferior con 4 `NavItem`: Live, Matches, Leagues, Profile
   - Ítem activo con estilo destacado
 
