@@ -57,7 +57,7 @@ Los componentes más pequeños e indivisibles.
 
 Combinaciones de átomos con significado propio.
 
-- [ ] **3.1** `src/components/molecules/MatchTeam.astro`
+- [x] **3.1** `src/components/molecules/MatchTeam.astro`
   - `TeamLogo` + nombre del equipo
   - Props: `src`, `alt`, `name`, `size`
 
