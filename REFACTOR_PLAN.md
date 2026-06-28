@@ -75,7 +75,7 @@ Combinaciones de átomos con significado propio.
 
 Componentes complejos que forman secciones completas de la UI.
 
-- [ ] **4.1** `src/components/organisms/TopAppBar.astro`
+- [x] **4.1** `src/components/organisms/TopAppBar.astro`
   - Header fijo: botón menú | título | search + account
   - Sin estado, solo presentacional
 
