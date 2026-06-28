@@ -79,7 +79,7 @@ Componentes complejos que forman secciones completas de la UI.
   - Header fijo: botón menú | título | search + account
   - Sin estado, solo presentacional
 
-- [ ] **4.2** `src/components/organisms/LiveMatchHero.astro`
+- [x] **4.2** `src/components/organisms/LiveMatchHero.astro`
   - Hero completo: `LiveIndicator` + `ScoreDisplay` + `MatchTeam` x2 + eventos
   - Background glow decorativo con `bg-destructive/10` + blur
 

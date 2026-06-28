@@ -1,10 +1,16 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import MatchdayLayout from '@/layouts/MatchdayLayout.astro';
+import LiveMatchHero from '@/components/organisms/LiveMatchHero.astro';
 ---
 
 <Layout>
   <MatchdayLayout>
-    <p class="text-muted-foreground">Contenido aquí pronto...</p>
+    <LiveMatchHero
+      homeTeam={{ src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDnl7ZIi0ZyPqt0WC2fVtYrWMxjpiFVPt7zAat0j0CKVxd-6hYMLCkjz1_XSWWxnNsgb3CpYfxPCtTaTESXbW4eC-4FaF8tWX7twuSJuE2TApjPML6oOsBs_sLBs-9SrMoYGhZSGId5i1LVY4sZKdnIYcsaLUWB0MNYm66faExmgN5TZeJqda4KVshzP15yxmF4edw2gJcPdMPN7NjGbrTJ87PEdTs9OG_WnsQ4IaDHYEdkZBZqCV0wtmMUODfKl21go915cqcaSw', name: 'Man City' }}
+      awayTeam={{ src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8iR7zvpHoUNoYoB2Pnb9tKZWYGy6_YP24vy6a3J506aL4Rs55wmYpbOktzGpGy-MSJ6SJYG4tdr8Z30pWXvR-FTrthxlSvjo7rqX2GhrPf1j7HRskhIvDFtIpp-QLArIecU42qbJ4nAWeIGQ35W8VxlyrCjzPjtAA3Br01VzIQez2O3cmsVP1pKSwDXxRnkYxQV3ghPdQ-xPSkeGkN3iuZUqf0c3JSRYyM_bTOZ7p7ipYRULC9knBULAx-gDgN6D_nv0Ad81isA', name: 'Arsenal' }}
+      homeScore={0}
+      awayScore={1}
+    />
   </MatchdayLayout>
 </Layout>
