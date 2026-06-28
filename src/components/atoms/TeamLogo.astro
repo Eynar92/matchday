@@ -1,0 +1,19 @@
+---
+export interface Props {
+  src: string;
+  alt?: string;
+  size?: number;
+  class?: string;
+}
+
+const { src, alt = "", size = 48, class: className = "" } = Astro.props;
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={size}
+  height={size}
+  class={`object-contain ${className}`}
+  loading="lazy"
+/>

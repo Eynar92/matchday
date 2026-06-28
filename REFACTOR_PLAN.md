@@ -26,7 +26,7 @@ Los componentes más pequeños e indivisibles.
   - Props: `name`, `size`, `class`
   - Iconos necesarios: `Menu`, `Search`, `CircleUser`, `Soccer`, `Square`, `Flag`, `CornerDownRight`, `Bell`, `Radio`, `Calendar`, `Trophy`, `User`
 
-- [ ] **2.2** `src/components/atoms/TeamLogo.astro`
+- [x] **2.2** `src/components/atoms/TeamLogo.astro`
   - `<img>` con dimensiones y `object-contain`
   - Props: `src`, `alt`, `size` (default 48px)
 
