@@ -1,0 +1,29 @@
+---
+import TeamLogo from "@/components/atoms/TeamLogo.astro";
+import ScoreDisplay from "@/components/atoms/ScoreDisplay.astro";
+
+export interface Props {
+  homeSrc: string
+  homeName: string
+  awaySrc: string
+  awayName: string
+  homeScore: number
+  awayScore: number
+  scoreSize?: "sm" | "md" | "lg"
+  class?: string
+}
+
+const { homeSrc, homeName, awaySrc, awayName, homeScore, awayScore, scoreSize = "sm", class: className = "" } = Astro.props
+---
+
+<div class={`flex justify-between items-center ${className}`}>
+  <div class="flex items-center gap-3 w-auto">
+    <TeamLogo src={homeSrc} alt={`${homeName} logo`} size={32} />
+    <span class="text-sm font-bold text-foreground">{homeName}</span>
+  </div>
+  <ScoreDisplay homeScore={homeScore} awayScore={awayScore} size={scoreSize} class="bg-muted/50 px-3 py-1 rounded-lg" />
+  <div class="flex items-center justify-end gap-3 w-auto">
+    <span class="text-sm font-bold text-foreground">{awayName}</span>
+    <TeamLogo src={awaySrc} alt={`${awayName} logo`} size={32} />
+  </div>
+</div>

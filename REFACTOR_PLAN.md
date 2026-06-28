@@ -61,7 +61,7 @@ Combinaciones de átomos con significado propio.
   - `TeamLogo` + nombre del equipo
   - Props: `src`, `alt`, `name`, `size`
 
-- [ ] **3.2** `src/components/molecules/TeamScoreRow.astro`
+- [x] **3.2** `src/components/molecules/TeamScoreRow.astro`
   - Fila: equipo local ↔ marcador ↔ equipo visitante
   - Props: `home`, `away`, `homeScore`, `awayScore`
 
