@@ -65,7 +65,7 @@ Combinaciones de átomos con significado propio.
   - Fila: equipo local ↔ marcador ↔ equipo visitante
   - Props: `home`, `away`, `homeScore`, `awayScore`
 
-- [ ] **3.3** `src/components/molecules/NavItem.astro`
+- [x] **3.3** `src/components/molecules/NavItem.astro`
   - Icono + label (activo/desactivado)
   - Props: `icon`, `label`, `active`
 

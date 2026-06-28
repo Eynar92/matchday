@@ -1,0 +1,28 @@
+---
+import LucideIcon from "@/components/atoms/LucideIcon";
+import type { ComponentProps } from "react";
+
+type IconName = ComponentProps<typeof LucideIcon>["name"];
+
+export interface Props {
+  icon: IconName;
+  label: string;
+  href?: string;
+  active?: boolean;
+  class?: string;
+}
+
+const { icon, label, href = "#", active = false, class: className = "" } = Astro.props;
+---
+
+<a
+  {href}
+  class={`flex flex-col items-center justify-center gap-0.5 px-4 py-1 rounded-xl transition-all duration-150 active:scale-90 ${
+    active
+      ? "text-foreground bg-muted/80"
+      : "text-muted-foreground/70 hover:text-foreground"
+  } ${className}`}
+>
+  <LucideIcon name={icon} size={22} />
+  <span class="text-[10px] font-bold uppercase tracking-widest">{label}</span>
+</a>
