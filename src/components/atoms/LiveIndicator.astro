@@ -1,0 +1,18 @@
+---
+export interface Props {
+  time: string;
+  class?: string;
+}
+
+const { time, class: className = "" } = Astro.props;
+---
+
+<div class={`flex items-center gap-2 ${className}`}>
+  <div class="relative flex items-center justify-center size-3">
+    <span
+      class="absolute inline-flex size-full rounded-full bg-destructive animate-ping opacity-75"
+    ></span>
+  </div>
+  <span class="text-destructive text-xs font-bold uppercase tracking-widest"
+    >Live • {time}</span>
+</div>
