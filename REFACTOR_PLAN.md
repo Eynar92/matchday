@@ -21,19 +21,18 @@
 
 Los componentes más pequeños e indivisibles.
 
-- [x] **2.1** `src/components/atoms/Icon.astro`
-  - Mapa de nombres Lucide → paths SVG
-  - Props: `name`, `size`, `class`
-  - Iconos necesarios: `Menu`, `Search`, `CircleUser`, `Soccer`, `Square`, `Flag`, `CornerDownRight`, `Bell`, `Radio`, `Calendar`, `Trophy`, `User`
+- [x] **2.1** `src/components/atoms/LucideIcon.tsx`
+  - Componente React que reexporta iconos de `lucide-react` (sin `client:*` → render estático)
+  - Props: `name`, `size`, `className`
+  - Iconos: `Menu`, `Search`, `CircleUser`, `Soccer` (custom SVG), `Square`, `Flag`, `CornerDownRight`, `Bell`, `Radio`, `Calendar`, `Trophy`, `User`
 
 - [x] **2.2** `src/components/atoms/TeamLogo.astro`
   - `<img>` con dimensiones y `object-contain`
   - Props: `src`, `alt`, `size` (default 48px)
 
-- [x] **2.3** `src/components/atoms/LiveIndicator.astro`
+- [x] **2.3** `LiveIndicator` (embebido en `LiveMatchHero.astro`)
   - Punto rojo pulsante + texto "Live • 48:38"
-  - Usa `animate-pulse` de Tailwind (reemplaza keyframe custom)
-  - Props: `time` (string, e.g. "48:38")
+  - Usa `animate-ping` de Tailwind (reemplaza keyframe custom)
 
 - [x] **2.4** `src/components/atoms/PerformanceBar.astro`
   - Barra de progreso dual con labels
@@ -108,9 +107,9 @@ Componentes complejos que forman secciones completas de la UI.
 
 ## Fase 5: Página Principal
 
-- [ ] **5.1** Modificar `src/pages/index.astro`
-  - Eliminar import de `Welcome.astro`
-  - Componer: `TopAppBar` + `LiveMatchHero` + `NextMatchesCarousel` + `RecentResultsList` + `BottomNavBar`
+- [x] **5.1** Modificar `src/pages/index.astro`
+  - Eliminar import de `Welcome.astro` ✓
+  - Componer: `TopAppBar` (via `MatchdayLayout`) + `LiveMatchHero` + `NextMatchesCarousel` + `RecentResultsList` + `BottomNavBar` (via `MatchdayLayout`)
   - Spacing: `pt-20 pb-28 px-4 space-y-8`
 
 - [ ] **5.2** Eliminar `src/components/Welcome.astro` (starter, ya no necesario)
@@ -132,9 +131,9 @@ Componentes complejos que forman secciones completas de la UI.
 |--------|---------|
 | 🖊️ Modificar | `src/layouts/Layout.astro` |
 | 🖊️ Modificar | `src/pages/index.astro` |
-| ✨ Crear | `src/components/atoms/Icon.astro` |
+| ✨ Crear | `src/components/atoms/LucideIcon.tsx` |
 | ✨ Crear | `src/components/atoms/TeamLogo.astro` |
-| ✨ Crear | `src/components/atoms/LiveIndicator.astro` |
+| ✨ Crear | `src/lib/types.ts` |
 | ✨ Crear | `src/components/atoms/PerformanceBar.astro` |
 | ✨ Crear | `src/components/atoms/StatItem.astro` |
 | ✨ Crear | `src/components/atoms/ScoreDisplay.astro` |
