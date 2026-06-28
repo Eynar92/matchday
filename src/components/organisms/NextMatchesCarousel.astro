@@ -1,0 +1,57 @@
+---
+import { Button } from "@/components/ui/button";
+import NextMatchCard from "@/components/organisms/NextMatchCard.astro";
+import type { Match } from "@/lib/types";
+
+export interface Props {
+  matches: Match[];
+  class?: string;
+}
+
+const { matches, class: className = "" } = Astro.props;
+---
+
+<section class={`space-y-4 px-4 ${className}`}>
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground">Next Matches</h2>
+    <Button variant="ghost" size="sm" className="text-sm font-semibold">View All</Button>
+  </div>
+  <div
+    class="flex gap-4 overflow-x-auto hide-scrollbar -mx-4 pb-2 cursor-grab active:cursor-grabbing"
+    id="carousel"
+  >
+    {
+      matches.map((match) => (
+        <NextMatchCard
+          date={match.date}
+          homeTeam={match.homeTeam}
+          awayTeam={match.awayTeam}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById("carousel");
+  if (carousel) {
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    carousel.addEventListener("mousedown", (e) => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+    carousel.addEventListener("mouseleave", () => (isDown = false));
+    carousel.addEventListener("mouseup", () => (isDown = false));
+    carousel.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+  }
+</script>

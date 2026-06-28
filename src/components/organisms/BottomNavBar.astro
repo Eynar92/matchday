@@ -1,0 +1,33 @@
+---
+import NavItem from "@/components/molecules/NavItem.astro";
+import type { IconName } from "@/lib/types";
+
+type Tab = {
+  icon: IconName;
+  label: string;
+  href?: string;
+};
+
+export interface Props {
+  tabs?: Tab[];
+  activeIndex?: number;
+  class?: string;
+}
+
+const {
+  tabs = [
+    { icon: "Radio", label: "Live" },
+    { icon: "Calendar", label: "Matches" },
+    { icon: "Trophy", label: "Leagues" },
+    { icon: "User", label: "Profile" },
+  ],
+  activeIndex = 0,
+  class: className = "",
+} = Astro.props;
+---
+
+<nav class={`fixed bottom-0 w-full z-50 bg-background border-t border-border flex justify-around items-center h-18 px-2 ${className}`}>
+  {tabs.map((tab, i) => (
+    <NavItem icon={tab.icon} label={tab.label} href={tab.href} active={i === activeIndex} />
+  ))}
+</nav>

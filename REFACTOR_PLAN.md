@@ -75,32 +75,32 @@ Combinaciones de átomos con significado propio.
 
 Componentes complejos que forman secciones completas de la UI.
 
-- [ ] **4.1** `src/components/organisms/TopAppBar.astro`
+- [x] **4.1** `src/components/organisms/TopAppBar.astro`
   - Header fijo: botón menú | título | search + account
   - Sin estado, solo presentacional
 
-- [ ] **4.2** `src/components/organisms/LiveMatchHero.astro`
+- [x] **4.2** `src/components/organisms/LiveMatchHero.astro`
   - Hero completo: `LiveIndicator` + `ScoreDisplay` + `MatchTeam` x2 + eventos
   - Background glow decorativo con `bg-destructive/10` + blur
 
-- [ ] **4.3** `src/components/organisms/NextMatchCard.astro`
+- [x] **4.3** `src/components/organisms/NextMatchCard.astro`
   - Card de próximo partido: fecha, recordatorio (Bell), equipos, botón "Match Details"
   - Botón usa shadcn `Button` con `client:load`
 
-- [ ] **4.4** `src/components/organisms/NextMatchesCarousel.astro`
+- [x] **4.4** `src/components/organisms/NextMatchesCarousel.astro`
   - Título "Next Matches" + "View All" + scroll horizontal
   - Contiene 2+ `NextMatchCard`
   - Scroll drag con script vanilla (mouse drag)
   - `hide-scrollbar` con clases Tailwind
 
-- [ ] **4.5** `src/components/organisms/RecentResultCard.astro`
+- [x] **4.5** `src/components/organisms/RecentResultCard.astro`
   - Card completa: `TeamScoreRow` + `PerformanceBar` x2 + grilla `StatItem` x4
   - `active:scale-[0.98]` para micro-interacción touch
 
-- [ ] **4.6** `src/components/organisms/RecentResultsList.astro`
+- [x] **4.6** `src/components/organisms/RecentResultsList.astro`
   - Título "Recent Results" + lista vertical de `RecentResultCard`
 
-- [ ] **4.7** `src/components/organisms/BottomNavBar.astro`
+- [x] **4.7** `src/components/organisms/BottomNavBar.astro`
   - Barra fija inferior con 4 `NavItem`: Live, Matches, Leagues, Profile
   - Ítem activo con estilo destacado
 

@@ -1,0 +1,36 @@
+---
+import type { Team, Stat, PerformanceBarData } from "@/lib/types";
+import RecentResultCard from "@/components/organisms/RecentResultCard.astro";
+
+type Result = {
+  homeTeam: Team;
+  awayTeam: Team;
+  homeScore: number;
+  awayScore: number;
+  performances: PerformanceBarData[];
+  stats: Stat[];
+};
+
+export interface Props {
+  results: Result[];
+  class?: string;
+}
+
+const { results, class: className = "" } = Astro.props;
+---
+
+<section class={`space-y-4 ${className}`}>
+  <h2 class="text-2xl font-semibold tracking-tight text-foreground">Recent Results</h2>
+  <div class="space-y-4">
+    {results.map((r) => (
+      <RecentResultCard
+        homeTeam={r.homeTeam}
+        awayTeam={r.awayTeam}
+        homeScore={r.homeScore}
+        awayScore={r.awayScore}
+        performances={r.performances}
+        stats={r.stats}
+      />
+    ))}
+  </div>
+</section>
