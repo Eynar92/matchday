@@ -83,7 +83,7 @@ Componentes complejos que forman secciones completas de la UI.
   - Hero completo: `LiveIndicator` + `ScoreDisplay` + `MatchTeam` x2 + eventos
   - Background glow decorativo con `bg-destructive/10` + blur
 
-- [ ] **4.3** `src/components/organisms/NextMatchCard.astro`
+- [x] **4.3** `src/components/organisms/NextMatchCard.astro`
   - Card de próximo partido: fecha, recordatorio (Bell), equipos, botón "Match Details"
   - Botón usa shadcn `Button` con `client:load`
 
