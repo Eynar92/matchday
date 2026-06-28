@@ -1,0 +1,21 @@
+---
+import LucideIcon from "@/components/atoms/LucideIcon";
+import type { ComponentProps } from "react";
+
+type IconName = ComponentProps<typeof LucideIcon>["name"];
+
+export interface Props {
+  icon: IconName;
+  text: string;
+  iconClass?: string;
+  muted?: boolean;
+  class?: string;
+}
+
+const { icon, text, iconClass = "text-foreground", muted = false, class: className = "" } = Astro.props;
+---
+
+<div class={`flex items-center gap-1.5 ${muted ? "opacity-60" : ""} ${className}`}>
+  <LucideIcon name={icon} size={16} className={iconClass} />
+  <span class="text-xs font-medium text-muted-foreground">{text}</span>
+</div>

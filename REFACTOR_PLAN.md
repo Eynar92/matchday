@@ -47,7 +47,7 @@ Los componentes más pequeños e indivisibles.
   - Marcador tipográfico "0 : 1"
   - Props: `homeScore`, `awayScore`, `awayHighlight` (boolean)
 
-- [ ] **2.7** `src/components/atoms/MatchEvent.astro`
+- [x] **2.7** `src/components/atoms/MatchEvent.astro`
   - Icono + texto tipo "22' Saka"
   - Props: `icon`, `text`, `iconColor`
 
