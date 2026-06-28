@@ -2,7 +2,7 @@
 
 > **Stack:** Astro 7 + Tailwind CSS 4 + Lucide Icons (SVG inline) + ShadCN/ui (solo interactivos)
 > **Metodología:** Atomic Design (Brad Frost)
-> **Estado:** ⬜ Pendiente | 🔄 En progreso | ✅ Completado
+> **Estado:** ✅ Completado — Refactorización terminada
 
 ---
 
@@ -112,20 +112,31 @@ Componentes complejos que forman secciones completas de la UI.
   - Componer: `TopAppBar` (via `MatchdayLayout`) + `LiveMatchHero` + `NextMatchesCarousel` + `RecentResultsList` + `BottomNavBar` (via `MatchdayLayout`)
   - Spacing: `pt-20 pb-28 px-4 space-y-8`
 
-- [ ] **5.2** Eliminar `src/components/Welcome.astro` (starter, ya no necesario)
+- [x] **5.2** Eliminar `src/components/Welcome.astro` (starter, ya no necesario)
 
 ---
 
 ## Fase 6: Verificación
 
-- [ ] **6.1** Ejecutar `pnpm astro dev` y verificar compilación sin errores
-- [ ] **6.2** Verificar que el layout se ve correcto en modo oscuro
-- [ ] **6.3** Verificar interacciones: hover, active scale, drag carrusel
-- [ ] **6.4** Verificar que no hay errores de iconos (todos los paths SVG existen)
+- [x] **6.1** Ejecutar `pnpm astro dev` y verificar compilación sin errores
+- [x] **6.2** Verificar que el layout se ve correcto en modo oscuro
+- [x] **6.3** Verificar interacciones: hover, active scale, drag carrusel
+- [x] **6.4** Verificar que no hay errores de iconos (todos los paths SVG existen)
 
 ---
 
-## Resumen de Archivos
+## Fase 7: Responsive Desktop
+
+- [x] **7.1** `LiveMatchHero`: añadir `max-w-lg mx-auto` a la card interior
+- [x] **7.2** `RecentResultsList`: grid `1 md:2 lg:3 xl:4` en vez de lista vertical
+
+---
+
+## Resumen final: Refactorización completada ✅
+
+Todo el HTML monolítico de `ConvertToComponents.html` fue desglosado en **17 componentes** organizados por Atomic Design, con tipos centralizados, tema oscuro del proyecto y micro-interacciones vía Tailwind.
+
+Próximo paso: conectar con API de ESPN para datos dinámicos.
 
 | Acción | Archivo |
 |--------|---------|
