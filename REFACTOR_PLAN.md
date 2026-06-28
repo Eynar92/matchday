@@ -43,7 +43,7 @@ Los componentes más pequeños e indivisibles.
   - Icono + valor numérico (para grilla de estadísticas)
   - Props: `icon`, `value`, `iconColor`
 
-- [ ] **2.6** `src/components/atoms/ScoreDisplay.astro`
+- [x] **2.6** `src/components/atoms/ScoreDisplay.astro`
   - Marcador tipográfico "0 : 1"
   - Props: `homeScore`, `awayScore`, `awayHighlight` (boolean)
 
