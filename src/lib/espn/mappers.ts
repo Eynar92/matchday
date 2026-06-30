@@ -89,12 +89,19 @@ export function mapToMatchEvents(event: Event): Array<{
     });
 }
 
+function formatEventDate(iso: string): string {
+  const d = new Date(iso);
+  const day = d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  const time = d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
+  return `${day}, ${time}`;
+}
+
 export function mapToMatch(event: Event): Match {
   const home = getHomeCompetitor(event);
   const away = getAwayCompetitor(event);
 
   return {
-    date: event.date,
+    date: formatEventDate(event.date),
     homeTeam: mapTeam(home),
     awayTeam: mapTeam(away),
   };
