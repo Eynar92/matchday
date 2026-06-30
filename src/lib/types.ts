@@ -16,6 +16,7 @@ export type Match = {
 
 export type Stat = {
   icon: IconName;
+  label: string;
   value1: number;
   value2: number;
   iconClass?: string;

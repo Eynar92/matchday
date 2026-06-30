@@ -5,6 +5,7 @@ import PerformanceBar from "@/components/atoms/PerformanceBar.astro";
 import StatItem from "@/components/atoms/StatItem.astro";
 
 export interface Props {
+  date: string;
   homeTeam: Team;
   awayTeam: Team;
   homeScore: number;
@@ -49,7 +50,7 @@ const {
   </div>
   <div class="grid grid-cols-4 gap-2 pt-4 border-t border-border">
     {stats.map((s) => (
-      <StatItem icon={s.icon} value1={s.value1} value2={s.value2} iconClass={s.iconClass} />
+      <StatItem icon={s.icon} label={s.label} value1={s.value1} value2={s.value2} iconClass={s.iconClass} />
     ))}
   </div>
 </div>

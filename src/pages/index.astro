@@ -5,13 +5,15 @@ import LiveMatchHero from "@/components/organisms/LiveMatchHero.astro";
 import NextMatchesCarousel from "@/components/organisms/NextMatchesCarousel.astro";
 import RecentResultsList from "@/components/organisms/RecentResultsList.astro";
 import type { IconName } from "@/lib/types";
-import { getScoreboard, ApiError } from "@/lib/espn/client";
+import { getScoreboard, getScoreboardRange, ApiError } from "@/lib/espn/client";
 import {
   mapToHeroEvent,
   mapToMatchEvents,
   mapToMatch,
+  mapToResult,
   isEventLive,
   isEventPre,
+  isEventPost,
 } from "@/lib/espn/mappers";
 
 function formatDate(date: Date): string {
@@ -37,6 +39,29 @@ let heroEvents: Array<{
 let isLive = false;
 let heroError: { status: number } | null = null;
 let preMatches: Array<{ date: string; homeTeam: { src: string; name: string }; awayTeam: { src: string; name: string } }> = [];
+let postResults: Array<{
+  date: string;
+  homeTeam: { src: string; name: string };
+  awayTeam: { src: string; name: string };
+  homeScore: number;
+  awayScore: number;
+  performances: Array<{ label: string; homeValue: string; awayValue: string; homePercent: number }>;
+  stats: Array<{ icon: IconName; label: string; value1: number; value2: number; iconClass?: string }>;
+}> = [];
+
+// Past week results: one date-range call for completed matches
+const today = new Date();
+const pastStart = new Date(today);
+pastStart.setDate(pastStart.getDate() - 7);
+try {
+  const pastData = await getScoreboardRange(formatDate(pastStart), formatDate(today));
+  const pastPosts = pastData.events.filter(isEventPost);
+  if (pastPosts.length > 0) {
+    postResults = pastPosts.map(mapToResult).reverse();
+  }
+} catch {
+  // silencio — postResults queda vacío, no se muestra la sección
+}
 
 for (let offset = 0; offset < 7; offset++) {
   const date = new Date();
@@ -77,7 +102,7 @@ for (let offset = 0; offset < 7; offset++) {
 
     if (preMatches.length >= 10) break;
   } catch (e) {
-    if (offset === 6) {
+    if (offset === 6 && !heroData) {
       heroError = e instanceof ApiError ? { status: e.status } : { status: 0 };
     }
   }
@@ -114,40 +139,10 @@ for (let offset = 0; offset < 7; offset++) {
         <NextMatchesCarousel matches={preMatches} />
       )
     }
-    <RecentResultsList
-      results={[
-        {
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3fy63nvtqw3DotSyVQ9_WiXufZWryJXjDY9HOj0auOyGlKmPFwV9-0PEseUxK45rttpMabNyMj3R_cDsnnssrqxhYQ2vNEAlSIyMIryBWgjx8MguALXuSXwYW5R9x0SUT_QUkxcsJAPgAByXMJbd7nqDjdoPRlRuqmqYdIvF4I3DoNuTFW-BgE2FRCIiegtBCPjgnhObeh_1p_jE2h1IL90CQ4KQyI2iHWeQY-pjILeJ-3674ANxT7nbKzg_M6-te2upwZrFTdA', name: 'Chelsea' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBfHl8JKX1ptauwor4C-avJhf5OGZ9FzxgrLk9OEaUI0eam2s6p1jvuwH6_bC2d561r78nxyXe2x4T99ar8trJ_dNh55nOp1s0SYdgVYfOBYgR7dQSt9bdHB0YqNhy30Y6qTBA_DIZPWGK89M8Ed29Dm0wyMMPUEOCw8p_E3DD0PMxLvSwJ0g0-e7voBMkht-Jmny6ypqWlzuYvESYFNphyaY5gd0dg_z67As5lGCpaXxnlztKVbdwNayh6AWEMrHXcWSrJ-ECFqA', name: 'Spurs' },
-          homeScore: 3,
-          awayScore: 1,
-          performances: [
-            { label: 'Possession', homeValue: '62%', awayValue: '38%', homePercent: 62 },
-            { label: 'Shots (OT)', homeValue: '14(8)', awayValue: '9(2)', homePercent: 55 },
-          ],
-          stats: [
-            { icon: 'Square', value1: 2, value2: 4, iconClass: 'text-yellow-500' },
-            { icon: 'Square', value1: 0, value2: 0, iconClass: 'text-destructive' },
-            { icon: 'Flag', value1: 3, value2: 1 },
-            { icon: 'CornerDownRight', value1: 7, value2: 4 },
-          ],
-        },
-        {
-          homeTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCXaPmMKVpLzut1PsC4A-gRNxbG7qSsTYg59cvC-20rqinORFcORvR_0FSjegGKOuh6a6BOfAwrzP2m5XHSscPVNNq6Or7EusNsh3CQTYFDVjOpAhwJhZPkMMG5tJsZjvRKakrTPW4JQBdiottO3pU3bd1STPViczXpuM9dGwASTTLxUwU4QpeHcNc7XGXzd8obEIiEJQvCLtYY7AHhj9WaA9EKhl5YuuMhfx4KZ6haWLB_cdNZGknrqu9pKGvxBlxyXFP7zSM-Mg', name: 'PSG' },
-          awayTeam: { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuByY9cr9PaUHxGGQeG6R0crWsNXPN3yGsLFUiFdJQvzi6xXKosJ7Hg_faIHAqeJQzqTvX2AJft_ziIJGtopFw8a4eb9s_pYU7hDLXsJvDLppQDBfufWMmg1Jzx0uvhXfceCEftLd7fEzCzR5fDUsrtrVr4d0v4xIvcW2NJeG_P2i0O7ZcxDfQGJ0wdnEec6JtnR8FL2sYnb3V4QD1EOAjoQBF8uijKXPzQErjm8bNVticqd2GptKvl63muDuLxVvKyYSZPbVwKTwg', name: 'Lens' },
-          homeScore: 2,
-          awayScore: 2,
-          performances: [
-            { label: 'Possession', homeValue: '54%', awayValue: '46%', homePercent: 54 },
-          ],
-          stats: [
-            { icon: 'Square', value1: 1, value2: 3, iconClass: 'text-yellow-500' },
-            { icon: 'Square', value1: 1, value2: 0, iconClass: 'text-destructive' },
-            { icon: 'Flag', value1: 2, value2: 4 },
-            { icon: 'CornerDownRight', value1: 5, value2: 6 },
-          ],
-        },
-      ]}
-    />
+    {
+      postResults.length > 0 && (
+        <RecentResultsList results={postResults} />
+      )
+    }
   </MatchdayLayout>
 </Layout>

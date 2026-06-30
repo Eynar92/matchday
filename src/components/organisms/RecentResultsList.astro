@@ -3,6 +3,7 @@ import type { Team, Stat, PerformanceBarData } from "@/lib/types";
 import RecentResultCard from "@/components/organisms/RecentResultCard.astro";
 
 type Result = {
+  date: string;
   homeTeam: Team;
   awayTeam: Team;
   homeScore: number;
@@ -17,20 +18,44 @@ export interface Props {
 }
 
 const { results, class: className = "" } = Astro.props;
+
+function formatDateGroup(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+}
+
+function getDateKey(iso: string): string {
+  return iso.slice(0, 10);
+}
+
+const groups = new Map<string, Result[]>();
+for (const r of results) {
+  const key = getDateKey(r.date);
+  if (!groups.has(key)) groups.set(key, []);
+  groups.get(key)!.push(r);
+}
+
+const sortedGroups = [...groups.entries()].sort(([a], [b]) => b.localeCompare(a));
 ---
 
-<section class={`space-y-4 ${className}`}>
+<section class={`space-y-6 ${className}`}>
   <h2 class="text-2xl font-semibold tracking-tight text-foreground">Recent Results</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-    {results.map((r) => (
-      <RecentResultCard
-        homeTeam={r.homeTeam}
-        awayTeam={r.awayTeam}
-        homeScore={r.homeScore}
-        awayScore={r.awayScore}
-        performances={r.performances}
-        stats={r.stats}
-      />
-    ))}
-  </div>
+  {sortedGroups.map(([dateKey, dayResults]) => (
+    <div class="space-y-3">
+      <h3 class="text-sm font-medium text-muted-foreground">{formatDateGroup(dayResults[0].date)}</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {dayResults.map((r) => (
+          <RecentResultCard
+            date={r.date}
+            homeTeam={r.homeTeam}
+            awayTeam={r.awayTeam}
+            homeScore={r.homeScore}
+            awayScore={r.awayScore}
+            performances={r.performances}
+            stats={r.stats}
+          />
+        ))}
+      </div>
+    </div>
+  ))}
 </section>

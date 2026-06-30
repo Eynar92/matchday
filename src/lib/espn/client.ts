@@ -22,6 +22,16 @@ export async function getScoreboard(date: string): Promise<WorldCupScoreBoardLiv
   return res.json();
 }
 
+export async function getScoreboardRange(start: string, end: string): Promise<WorldCupScoreBoardLive> {
+  const res = await fetch(`${BASE_URL}/scoreboard?dates=${start}-${end}`);
+
+  if (!res.ok) {
+    throw new ApiError(res.status, `ESPN API range request failed`);
+  }
+
+  return res.json();
+}
+
 export async function getEventSummary(eventId: string): Promise<unknown> {
   const res = await fetch(`${BASE_URL}/summary?event=${eventId}`);
 

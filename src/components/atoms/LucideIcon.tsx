@@ -10,6 +10,8 @@ import {
   Calendar,
   Trophy,
   User,
+  Crosshair,
+  Target,
   type LucideProps,
 } from "lucide-react";
 
@@ -49,7 +51,9 @@ const iconMap = {
   Calendar,
   Trophy,
   User,
-  Soccer
+  Soccer,
+  Crosshair,
+  Target
 } as const;
 
 export interface Props {

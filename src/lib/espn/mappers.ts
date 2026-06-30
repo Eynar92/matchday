@@ -108,6 +108,7 @@ export function mapToMatch(event: Event): Match {
 }
 
 export function mapToResult(event: Event): {
+  date: string;
   homeTeam: Team;
   awayTeam: Team;
   homeScore: number;
@@ -140,6 +141,7 @@ export function mapToResult(event: Event): {
   const awayReds = details.filter((d) => d.redCard && d.team.id === away.id).length;
 
   return {
+    date: event.date,
     homeTeam: mapTeam(home),
     awayTeam: mapTeam(away),
     homeScore: Number.parseInt(home.score, 10) || 0,
@@ -151,34 +153,36 @@ export function mapToResult(event: Event): {
         awayValue: `${awayPossession}%`,
         homePercent: Math.round(homePossession),
       },
-      {
-        label: "Total Shots",
-        homeValue: `${homeShots}`,
-        awayValue: `${awayShots}`,
-        homePercent: calcPercent(homeShots, awayShots),
-      },
-      {
-        label: "Shots on Target",
-        homeValue: `${homeSog}`,
-        awayValue: `${awaySog}`,
-        homePercent: calcPercent(homeSog, awaySog),
-      },
-      {
-        label: "Corners",
-        homeValue: `${homeCorners}`,
-        awayValue: `${awayCorners}`,
-        homePercent: calcPercent(homeCorners, awayCorners),
-      },
     ],
     stats: [
       {
+        icon: "Crosshair",
+        label: "Shots",
+        value1: homeShots,
+        value2: awayShots,
+      },
+      {
+        icon: "Target",
+        label: "SOT",
+        value1: homeSog,
+        value2: awaySog,
+      },
+      {
+        icon: "CornerDownRight",
+        label: "Corners",
+        value1: homeCorners,
+        value2: awayCorners,
+      },
+      {
         icon: "Square",
+        label: "YC",
         value1: homeYellows,
         value2: awayYellows,
         iconClass: "text-yellow-500",
       },
       {
         icon: "Square",
+        label: "RC",
         value1: homeReds,
         value2: awayReds,
         iconClass: "text-destructive",
