@@ -4,16 +4,18 @@ import LucideIcon from "@/components/atoms/LucideIcon";
 
 export interface Props {
   icon: IconName;
+  label: string;
   value1: number;
   value2: number;
   iconClass?: string;
   class?: string;
 }
 
-const { icon, value1, value2, iconClass = "text-muted-foreground", class: className = "" } = Astro.props;
+const { icon, label, value1, value2, iconClass = "text-muted-foreground", class: className = "" } = Astro.props;
 ---
 
 <div class={`flex flex-col items-center gap-1 ${className}`}>
   <LucideIcon name={icon} size={16} className={iconClass} />
   <span class="text-xs font-medium text-muted-foreground">{value1} | {value2}</span>
+  <span class="text-[10px] text-muted-foreground/60 uppercase tracking-wider">{label}</span>
 </div>

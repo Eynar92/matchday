@@ -22,4 +22,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-src/components/ConvertToComponents.html
+
+espn_api/
