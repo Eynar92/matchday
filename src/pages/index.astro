@@ -4,22 +4,87 @@ import MatchdayLayout from "@/layouts/MatchdayLayout.astro";
 import LiveMatchHero from "@/components/organisms/LiveMatchHero.astro";
 import NextMatchesCarousel from "@/components/organisms/NextMatchesCarousel.astro";
 import RecentResultsList from "@/components/organisms/RecentResultsList.astro";
+import type { IconName } from "@/lib/types";
+import { getScoreboard, ApiError } from "@/lib/espn/client";
+import {
+  mapToHeroEvent,
+  mapToMatchEvents,
+  isEventLive,
+  isEventPre,
+  isEventPost,
+} from "@/lib/espn/mappers";
+
+const today = new Date();
+const dateStr = `${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, "0")}${String(today.getDate()).padStart(2, "0")}`;
+
+let heroData: {
+  homeTeam: { src: string; name: string };
+  awayTeam: { src: string; name: string };
+  homeScore: number;
+  awayScore: number;
+  liveTime: string;
+} | null = null;
+let heroEvents: Array<{
+  icon: IconName;
+  text: string;
+  iconClass?: string;
+  muted?: boolean;
+}> = [];
+let isLive = false;
+let heroError: { status: number } | null = null;
+
+try {
+  const data = await getScoreboard(dateStr);
+
+  const liveEvent = data.events.find(isEventLive);
+  const targetEvent = liveEvent ?? data.events.find(isEventPre) ?? null;
+
+  if (targetEvent) {
+    const mapped = mapToHeroEvent(targetEvent);
+    heroData = {
+      homeTeam: mapped.homeTeam,
+      awayTeam: mapped.awayTeam,
+      homeScore: mapped.homeScore,
+      awayScore: mapped.awayScore,
+      liveTime: mapped.liveTime,
+    };
+    heroEvents = mapToMatchEvents(targetEvent);
+    isLive = mapped.isLive;
+  }
+} catch (e) {
+  if (e instanceof ApiError) {
+    heroError = { status: e.status };
+  } else {
+    heroError = { status: 0 };
+  }
+}
 ---
 
 <Layout>
   <MatchdayLayout>
-    <LiveMatchHero
-      homeTeam={{
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnl7ZIi0ZyPqt0WC2fVtYrWMxjpiFVPt7zAat0j0CKVxd-6hYMLCkjz1_XSWWxnNsgb3CpYfxPCtTaTESXbW4eC-4FaF8tWX7twuSJuE2TApjPML6oOsBs_sLBs-9SrMoYGhZSGId5i1LVY4sZKdnIYcsaLUWB0MNYm66faExmgN5TZeJqda4KVshzP15yxmF4edw2gJcPdMPN7NjGbrTJ87PEdTs9OG_WnsQ4IaDHYEdkZBZqCV0wtmMUODfKl21go915cqcaSw",
-        name: "Man City",
-      }}
-      awayTeam={{
-        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8iR7zvpHoUNoYoB2Pnb9tKZWYGy6_YP24vy6a3J506aL4Rs55wmYpbOktzGpGy-MSJ6SJYG4tdr8Z30pWXvR-FTrthxlSvjo7rqX2GhrPf1j7HRskhIvDFtIpp-QLArIecU42qbJ4nAWeIGQ35W8VxlyrCjzPjtAA3Br01VzIQez2O3cmsVP1pKSwDXxRnkYxQV3ghPdQ-xPSkeGkN3iuZUqf0c3JSRYyM_bTOZ7p7ipYRULC9knBULAx-gDgN6D_nv0Ad81isA",
-        name: "Arsenal",
-      }}
-      homeScore={0}
-      awayScore={1}
-    />
+    {
+      heroError ? (
+        <section class="max-w-lg mx-auto">
+          <div class="rounded-xl bg-card border p-6 text-center space-y-2">
+            <p class="text-muted-foreground text-sm">
+              No pudimos cargar los datos en vivo.
+            </p>
+            <p class="text-destructive text-xs font-mono">
+              {heroError.status > 0 ? `Error ${heroError.status}` : "Error de conexión"}
+            </p>
+          </div>
+        </section>
+      ) : heroData ? (
+        <LiveMatchHero
+          homeTeam={heroData.homeTeam}
+          awayTeam={heroData.awayTeam}
+          homeScore={heroData.homeScore}
+          awayScore={heroData.awayScore}
+          liveTime={isLive ? heroData.liveTime : undefined}
+          events={heroEvents}
+        />
+      ) : null
+    }
     <NextMatchesCarousel
       matches={[
         {
@@ -31,28 +96,6 @@ import RecentResultsList from "@/components/organisms/RecentResultsList.astro";
           awayTeam: {
             src: "https://lh3.googleusercontent.com/aida-public/AB6AXuD4o-J53F4PGt4BeVKpYGQs1PkVTIxeK8JwEreMFTfeAxZ1HLU3gpmECtC3dl5S7NJAQnEhlvpY_hOB0jT8cOq4ThUt15R_bv0auQJOAKbkwe6RPEgAAkqXQBmCo5CH7n1JW_egvxFcrYbGOWKPIaq7ctW91izO92nmb6yNMgpCUWvTX0W3WDsNAkl41MeQeyiLmcXrS5BOcD9bl77TZM4s1aeK-ztD5cbYBn09ytkhfS9yHu4tyETvW_CBnS56ARC2X4FnafGUeA",
             name: "Barcelona",
-          },
-        },
-        {
-          date: "Tue 30/06 21:00",
-          homeTeam: {
-            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A",
-            name: "Liverpool",
-          },
-          awayTeam: {
-            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA",
-            name: "Bayern",
-          },
-        },
-        {
-          date: "Tue 30/06 21:00",
-          homeTeam: {
-            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTzOPrPAAS0LmGWHhbfyf-mRhmcUX1uaaBb2P7Skct9cMehU8IiSsJwgGqyZDtNS486jUVVl--mkOHX1TY90ykLUHR-hBXCrL4DHPrfwag6Il2IlEu-HKgtXcAloJkOAH9nb0LdR9V8CXACPxpPqg03e3U718Pwjruyh39SRf5Tw1o1felM0v3dg8_-GzlsvkFsuFQgApctumK1gVBifwq0pX7DrfLto_I6rzz254QYlNPK-B7UphUNv7T0P0v0BKPlY3NO8u64A",
-            name: "Liverpool",
-          },
-          awayTeam: {
-            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtmJfeufnhPwAETn_x18bAgSOIUEPkBBsP4LdUJXNQQBgUFlk6u6d0r8rpG4HMUAbJLDNZHKSBS7mrfT2YR3Pk1JMhWC1ZNqkp-l4zlcmPtkFKKCyPtoqSzB0_ZuQNqHw3nK1ivkrfMDsfZ8Fefjr4LyNcrcOsZbubAD3OB1q7uaHkdh_J-ztEy5U1h4Oj_4vUwTre846JJvmO8gBEZTA49FN4gFKxJ3QwtPkgcfJAN4S_PHfVSg4yWSiNBDBUM2sh7nCcTqedUA",
-            name: "Bayern",
           },
         },
         {

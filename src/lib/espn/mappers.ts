@@ -1,4 +1,4 @@
-import type { Team, Match, Stat, PerformanceBarData } from "@/lib/types";
+import type { Team, Match, Stat, PerformanceBarData, IconName } from "@/lib/types";
 import type { Event, Competitor, Detail } from "./types";
 
 function getHomeCompetitor(event: Event): Competitor {
@@ -48,7 +48,7 @@ export function mapToHeroEvent(event: Event): {
 }
 
 export function mapToMatchEvents(event: Event): Array<{
-  icon: string;
+  icon: IconName;
   text: string;
   iconClass?: string;
   muted?: boolean;
